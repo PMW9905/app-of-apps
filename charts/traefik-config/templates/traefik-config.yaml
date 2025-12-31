@@ -12,7 +12,8 @@ spec:
       - "--log.level=DEBUG"
     ports:
       traefik:
-        expose: true
+        expose: 
+          default: true
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
