@@ -1,3 +1,4 @@
 argo-cd:
   server:
-    insecure: "true"
+    extraArgs:
+      - --insecure
