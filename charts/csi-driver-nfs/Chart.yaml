@@ -1,0 +1,10 @@
+apiVersion: v2
+name: csi-driver-nfs-wrapper
+type: application
+version: 0.1.0
+appVersion: "v4.12.1"
+
+dependencies:
+  - name: csi-driver-nfs
+    version: "v4.12.1"
+    repository: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
