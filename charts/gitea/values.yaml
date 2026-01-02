@@ -2,3 +2,21 @@ gitea:
   persistence:
     enabled: true
     storageClass: nfs-ssd-retain
+
+  # Disable default ingress
+  ingress:
+    enabled: false
+
+  service:
+    http:
+      type: ClusterIP
+      port: 3000
+
+  gitea:
+    config:
+      server:
+        PROTOCOL: http  
+        DOMAIN: gitea.parkiki.net
+        ROOT_URL: https://gitea.parkiki.net
+        SSH_DOMAIN: gitea.parkiki.net
+        HTTP_PORT: 3000
