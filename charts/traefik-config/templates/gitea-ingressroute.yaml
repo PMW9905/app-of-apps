@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: gitea-ingressroute
+  name: gitea-application-http
   namespace: gitea
 spec:
   entryPoints:
@@ -10,7 +10,7 @@ spec:
     - match: Host(`gitea.parkiki.org`)
       kind: Rule
       services:
-        - name: gitea-http
+        - name: gitea-application-http
           port: 3000
   tls:
     certResolver: letsencrypt
