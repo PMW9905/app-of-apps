@@ -16,7 +16,7 @@ gitea:
     config:
       server:
         PROTOCOL: http  
-        DOMAIN: gitea.parkiki.net
-        ROOT_URL: https://gitea.parkiki.net
-        SSH_DOMAIN: gitea.parkiki.net
+        DOMAIN: gitea.parkiki.org
+        ROOT_URL: https://gitea.parkiki.org
+        SSH_DOMAIN: gitea.parkiki.org
         HTTP_PORT: 3000
