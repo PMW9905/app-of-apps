@@ -1,0 +1,4 @@
+gitea:
+  persistence:
+    enabled: true
+    storageClass: nfs-ssd-retain
