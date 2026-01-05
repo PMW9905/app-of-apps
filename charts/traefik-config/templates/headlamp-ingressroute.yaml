@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: headlamp-application
+  namespace: kube-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`headlamp.parkiki.org`)
+      priority: 10
+      services:
+        - name: headlamp-application
+          port: 80
+  tls:
+    certResolver: letsencrypt
