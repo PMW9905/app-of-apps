@@ -55,7 +55,7 @@ spec:
        
         # ---------- Playit.gg sidecar ----------
         - name: playit
-          image: ghcr.io/playit-cloud/playit:latest
+          image: ghcr.io/playit-cloud/playit-agent:latest
           env:
             - name: TOKEN
               valueFrom:
