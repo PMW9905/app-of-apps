@@ -1,7 +1,7 @@
 gitea:
   persistence:
     enabled: true
-    storageClass: nfs-ssd-retain
+    storageClass: gitea-storageclass
 
   # Disable default ingress
   ingress:
