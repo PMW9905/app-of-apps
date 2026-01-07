@@ -31,7 +31,7 @@ spec:
                   name: curseforge-secret
                   key: curseforge-api-key
             - name: CF_SLUG
-              value: "raspberry-flavoured"  # <-- replace with the actual CurseForge modpack slug
+              value: "raspberry-flavoured"  # <-- replace with actual CurseForge modpack slug
             - name: ONLINE_MODE
               value: "TRUE"
             - name: WHITELIST
@@ -52,8 +52,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-            - name: downloads
-              mountPath: /downloads
+            - name: data
+              mountPath: /downloads  # reuse the same PVC
 
         # ---------- Playit.gg sidecar ----------
         - name: playit
@@ -69,7 +69,4 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: raspberry-flavoured-data
-        - name: downloads
-          persistentVolumeClaim:
-            claimName: raspberry-flavoured-downloads
 
