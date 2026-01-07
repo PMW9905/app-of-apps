@@ -23,39 +23,39 @@ spec:
           env:
             - name: EULA
               value: "TRUE"
+
+            # --- Correct server configuration ---
             - name: TYPE
-              value: "AUTO_CURSEFORGE"
-            - name: CF_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: curseforge-secret
-                  key: curseforge-api-key
-            - name: CF_SLUG
-              value: "raspberry-flavoured"  # <-- replace with actual CurseForge modpack slug
+              value: "FORGE"
+            - name: VERSION
+              value: "1.19.2"
+            - name: PACKWIZ_URL
+              value: "https://asphodel.cc/packwiz/Ports/Curse/Raspberry-Server/pack.toml"
+
+            # --- Additional Config ---
+            - name: MEMORY
+              value: "12G"
             - name: ONLINE_MODE
               value: "TRUE"
             - name: WHITELIST
               value: "TRUE"
             - name: MAX_PLAYERS
               value: "10"
-            - name: MEMORY
-              value: "12G"
+
+            # --- RCON (safe) ---
             - name: ENABLE_RCON
               value: "TRUE"
-            - name: CF_EXCLUDE_MODS
-              value: "slotify,polytone"
+            - name: RCON_BINDING
+              value: "127.0.0.1"
             - name: RCON_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: rcon-secret
                   key: rcon-password
-            - name: RCON_BINDING
-              value: "127.0.0.1"
+
           volumeMounts:
             - name: data
               mountPath: /data
-            - name: data
-              mountPath: /downloads  # reuse the same PVC
 
         # ---------- Playit.gg sidecar ----------
         - name: playit
