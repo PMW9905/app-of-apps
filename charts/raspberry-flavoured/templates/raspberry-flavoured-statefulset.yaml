@@ -42,6 +42,8 @@ spec:
               value: "12G"
             - name: ENABLE_RCON
               value: "TRUE"
+            - name: CF_EXCLUDE_MODS
+              value: "slotify,polytone"
             - name: RCON_PASSWORD
               valueFrom:
                 secretKeyRef:
