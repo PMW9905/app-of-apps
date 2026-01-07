@@ -20,3 +20,13 @@ gitea:
         ROOT_URL: https://gitea.parkiki.org
         SSH_DOMAIN: gitea.parkiki.org
         HTTP_PORT: 3000
+
+  postgresql-ha:
+    enabled: false
+
+  postgresql:
+    enabled: true
+    persistence:
+      enabled: true
+      storageClass: gitea-postgresql-storageclass
+      size: 10Gi
