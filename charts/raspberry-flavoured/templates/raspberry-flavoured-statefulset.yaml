@@ -23,6 +23,15 @@ spec:
           env:
             - name: EULA
               value: "TRUE"
+            - name: TYPE
+              value: "AUTO_CURSEFORGE"
+            - name: CF_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: curseforge-secret
+                  key: curseforge-api-key
+            - name: CF_SLUG
+              value: "raspberry-flavoured"  # <-- replace with the actual CurseForge modpack slug
             - name: ONLINE_MODE
               value: "TRUE"
             - name: WHITELIST
@@ -31,17 +40,8 @@ spec:
               value: "10"
             - name: MEMORY
               value: "12G"
-            - name: TYPE
-              value: "FORGE"
-            - name: CF_MODPACK_ID
-              value: "858803"
-            - name: CF_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: curseforge-secret
-                  key: curseforge-api-key
             - name: ENABLE_RCON
-              value: "true"
+              value: "TRUE"
             - name: RCON_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -52,7 +52,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-       
+            - name: downloads
+              mountPath: /downloads
+
         # ---------- Playit.gg sidecar ----------
         - name: playit
           image: ghcr.io/playit-cloud/playit-agent:latest
@@ -67,3 +69,7 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: raspberry-flavoured-data
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: raspberry-flavoured-downloads
+
