@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: raspberry-flavoured
+  namespace: minecraft
+spec:
+  serviceName: raspberry-flavoured
+  replicas: 1
+  selector:
+    matchLabels:
+      app: raspberry-flavoured
+  template:
+    metadata:
+      labels:
+        app: raspberry-flavoured
+    spec:
+      containers:
+        # ---------- Main Minecraft server ----------
+        - name: minecraft
+          image: itzg/minecraft-server:java17
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: "TRUE"
+            - name: ONLINE_MODE
+              value: "TRUE"
+            - name: WHITELIST
+              value: "TRUE"
+            - name: MAX_PLAYERS
+              value: "10"
+            - name: MEMORY
+              value: "12G"
+            - name: TYPE
+              value: "FORGE"
+            - name: CF_MODPACK_ID
+              value: "858803"
+            - name: CF_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: curseforge-secret
+                  key: curseforge-api-key
+            - name: ENABLE_RCON
+              value: "true"
+            - name: RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rcon-secret
+                  key: rcon-password
+            - name: RCON_BINDING
+              value: "127.0.0.1"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+       
+        # ---------- Playit.gg sidecar ----------
+        - name: playit
+          image: ghcr.io/playit-cloud/playit:latest
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: playitgg-secret
+                  key: playitgg-api-key
+          command: ["/bin/sh", "-c"]
+          args:
+            - playit tunnel tcp 25565
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: raspberry-flavoured-data
