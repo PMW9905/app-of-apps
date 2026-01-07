@@ -26,7 +26,8 @@ gitea:
 
   postgresql:
     enabled: true
-    persistence:
-      enabled: true
-      storageClass: gitea-postgresql-storageclass
-      size: 10Gi
+    primary:
+      persistence:
+        enabled: true
+        storageClass: gitea-postgresql-storageclass
+        size: 10Gi
