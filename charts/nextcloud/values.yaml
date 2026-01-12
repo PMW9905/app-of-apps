@@ -1,0 +1,13 @@
+nextcloud:
+  persistence:
+    enabled: true
+    storageClass: 'nextcloud-storageclass'
+    accessMode: ReadWriteOnce
+    size: 1Ti
+
+  nextcloud:
+    existingSecret:
+      enabled: true
+      secretName: nextcloud-admin
+      usernameKey: nextcloud-username
+      passwordKey: nextcloud-password
