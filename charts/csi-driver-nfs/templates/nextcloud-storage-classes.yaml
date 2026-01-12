@@ -1,0 +1,15 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nextcloud-storageclass
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: truenas.parkiki.org
+  share: /mnt/fast_storage/k3s
+  subDir: nextcloud
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
