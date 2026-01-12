@@ -9,3 +9,4 @@ jellyfin:
     media:
       enabled: true
       storageClass: "jellyfin-media-storageclass"
+      size: 7Ti
