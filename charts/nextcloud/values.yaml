@@ -2,8 +2,11 @@ nextcloud:
   persistence:
     enabled: true
     storageClass: nextcloud-storageclass
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Ti
+    nextcloudData:
+      enabled: true
+      subPath: data
 
   nextcloud:
     existingSecret:
@@ -12,8 +15,6 @@ nextcloud:
       usernameKey: nextcloud-username
       passwordKey: nextcloud-password
 
-  # disabling because nfs doesn't play well with
-  # mysql. using postgresql instead
   internalDatabase:
     enabled: false
 
@@ -34,17 +35,15 @@ nextcloud:
     auth:
       enabled: false
 
-  ## probes
   livenessProbe:
-    initialDelaySeconds: 60
-    failureThreshold: 10
+    initialDelaySeconds: 120
+    failureThreshold: 5
 
   readinessProbe:
-    initialDelaySeconds: 60
-    failureThreshold: 10
+    initialDelaySeconds: 120
+    failureThreshold: 5
 
-
-  # nfs specific fs group for apache
   podSecurityContext:
     fsGroup: 33
-
+    runAsUser: 33
+    runAsGroup: 33
