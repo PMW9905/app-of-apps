@@ -1,7 +1,7 @@
 nextcloud:
   persistence:
     enabled: true
-    storageClass: 'nextcloud-storageclass'
+    storageClass: nextcloud-storageclass
     accessMode: ReadWriteOnce
     size: 1Ti
 
