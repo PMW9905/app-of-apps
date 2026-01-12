@@ -1,0 +1,11 @@
+jellyfin:
+  persistence:
+    config:
+      enabled: true
+      storageClass: "jellyfin-config-storageclass"
+    cache:
+      enabled: true
+      storageClass: "jellyfin-cache-storageclass"
+    media:
+      enabled: true
+      storageClass: "jellyfin-media-storageclass"
