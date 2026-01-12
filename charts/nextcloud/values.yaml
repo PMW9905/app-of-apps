@@ -11,3 +11,40 @@ nextcloud:
       secretName: nextcloud-admin
       usernameKey: nextcloud-username
       passwordKey: nextcloud-password
+
+  # disabling because nfs doesn't play well with
+  # mysql. using postgresql instead
+  internalDatabase:
+    enabled: false
+
+  postgresql:
+    enabled: true
+    auth:
+      existingSecret: nextcloud-postgres
+      usernameKey: username
+      passwordKey: password
+      databaseKey: database
+    primary:
+      persistence:
+        enabled: true
+        storageClass: nextcloud-postgresql-storageclass
+
+  redis:
+    enabled: true
+    auth:
+      enabled: false
+
+  ## probes
+  livenessProbe:
+    initialDelaySeconds: 60
+    failureThreshold: 10
+
+  readinessProbe:
+    initialDelaySeconds: 60
+    failureThreshold: 10
+
+
+  # nfs specific fs group for apache
+  podSecurityContext:
+    fsGroup: 33
+
