@@ -5,11 +5,6 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
-    providers:
-      kubernetesCRD:
-        allowExternalNameServices: true
-      kubernetesIngress:
-        allowExternalNameServices: true
     additionalArguments:
       - "--api"
       - "--api.dashboard=true"
@@ -20,6 +15,7 @@ spec:
       - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=porkbun"
+      - "--providers.kubernetescrd.allowExternalNameServices=true"
     env:
       - name: PORKBUN_API_KEY
         valueFrom:
