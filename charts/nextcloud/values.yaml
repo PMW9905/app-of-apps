@@ -17,32 +17,8 @@ nextcloud:
     enabled: false
   postgresql:
     enabled: false
-
-  persistence:
-    enabled: true
-    storageClass: nextcloud-storageclass
-    accessMode: ReadWriteMany
-    size: 10Gi
-
+  
   nextcloud:
-
-    extraSidecarContainers:
-      - name: nextcloud-logger
-        image: busybox
-        command:
-          - /bin/sh
-          - -c
-          - |
-            while [ ! -f /var/www/html/data/nextcloud.log ]; do
-              sleep 1
-            done
-            tail -n+1 -f /var/www/html/data/nextcloud.log
-        volumeMounts:
-          - name: nextcloud-main
-            mountPath: /var/www/html/data
-            subPath: data
-
-
     host: nextcloud.parkiki.org
 
     configs:
