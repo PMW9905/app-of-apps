@@ -6,7 +6,7 @@ nextcloud:
         bucket: "nextcloud"
         host: "nextcloud.parkiki.org"
         port: "30292"
-        ssl: true
+        ssl: false
         region: "us-east-1"
         usePathStyle: true
         legacyAuth: false
