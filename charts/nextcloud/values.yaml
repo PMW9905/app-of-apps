@@ -1,5 +1,4 @@
 nextcloud:
-
   internalDatabase:
     enabled: false
 
@@ -25,20 +24,25 @@ nextcloud:
     accessMode: ReadWriteMany
     size: 10Gi
 
-
   nextcloud:
     host: nextcloud.parkiki.org
 
     configs:
+      logging.config.php: |-
+        <?php
+        $CONFIG = array_merge(
+          (require '/var/www/html/config/config.php'),
+          array(
+            'log_type' => 'errorlog',
+            'loglevel' => 0,
+            'logfile' => '/dev/stderr'
+          )
+        );
       overwrite.config.php: |-
         <?php
         $CONFIG = array (
           'overwritehost' => 'nextcloud.parkiki.org:443',
           'overwriteprotocol' => 'https',
-          'log_type' => 'errorlog',
-          'loglevel' => 0,
-          'logdateformat' => 'c',
-          'logfile' => '/dev/stderr'
         );
 
     trustedDomains:
