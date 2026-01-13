@@ -1,5 +1,9 @@
 nextcloud:
   nextcloud:
+    host: nextcloud.parkiki.org
+    trustedDomains:
+      - nextcloud.parkiki.org
+      - localhost
     objectStore:
       s3:
         enabled: true
