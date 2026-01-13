@@ -1,4 +1,31 @@
 nextcloud:
+
+  internalDatabase:
+    enabled: false
+
+  externalDatabase:
+    enabled: true
+    type: mysql
+    host: truenas.parkiki.org:3306
+    database: nextcloud
+    existingSecret:
+      enabled: true
+      secretName: nextcloud-mariadb-credentials
+      usernameKey: user
+      passwordKey: password
+
+  mariadb:
+    enabled: false
+  postgresql:
+    enabled: false
+
+  persistence:
+    enabled: true
+    storageClass: nextcloud-storageclass
+    accessMode: ReadWriteMany
+    size: 10Gi
+
+
   nextcloud:
     host: nextcloud.parkiki.org
 
