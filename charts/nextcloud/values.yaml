@@ -27,12 +27,20 @@ nextcloud:
   nextcloud:
 
     extraSidecarContainers:
-     - name: nextcloud-logger
-       image: busybox
-       command: [/bin/sh, -c, 'while ! test -f "/run/nextcloud/data/nextcloud.log"; do sleep 1; done; tail -n+1 -f /run/nextcloud/data/nextcloud.log']
-       volumeMounts:
-       - name: nextcloud-data
-         mountPath: /run/nextcloud/data
+      - name: nextcloud-logger
+        image: busybox
+        command:
+          - /bin/sh
+          - -c
+          - |
+            while [ ! -f /var/www/html/data/nextcloud.log ]; do
+              sleep 1
+            done
+            tail -n+1 -f /var/www/html/data/nextcloud.log
+        volumeMounts:
+          - name: nextcloud-main
+            mountPath: /var/www/html/data
+            subPath: data
 
 
     host: nextcloud.parkiki.org
