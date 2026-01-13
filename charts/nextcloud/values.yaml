@@ -4,6 +4,11 @@ nextcloud:
     trustedDomains:
       - nextcloud.parkiki.org
       - localhost
+    existingSecret:
+      enabled: true
+      secretName: nextcloud-admin
+      usernameKey: nextcloud-username
+      passwordKey: nextcloud-password
     objectStore:
       s3:
         enabled: true
