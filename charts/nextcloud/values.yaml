@@ -4,7 +4,7 @@ nextcloud:
       s3:
         enabled: true
         bucket: "nextcloud"
-        host: "nextcloud.parkiki.org"
+        host: "truenas.parkiki.org"
         port: "30292"
         ssl: false
         region: "us-east-1"
