@@ -18,7 +18,7 @@ subsets:
   - addresses:
       - ip: 192.168.127.155
     ports:
-      - port: 30027
+      - port: 80
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
