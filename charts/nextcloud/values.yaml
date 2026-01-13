@@ -37,7 +37,8 @@ nextcloud:
           'overwriteprotocol' => 'https',
           'log_type' => 'errorlog',
           'loglevel' => 0,
-          'logdateformat' => 'c'
+          'logdateformat' => 'c',
+          'logfile' => '/dev/stderr'
         );
 
     trustedDomains:
