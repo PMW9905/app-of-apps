@@ -13,5 +13,5 @@ nextcloud:
 
         existingSecret: "nextcloud-s3-credentials"
         secretKeys:
-          accessKey: "access-key"
-          secretKey: "secret-key"
+          accessKey: "accessKey"
+          secretKey: "secretKey"
