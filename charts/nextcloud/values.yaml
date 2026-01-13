@@ -35,6 +35,9 @@ nextcloud:
         $CONFIG = array (
           'overwritehost' => 'nextcloud.parkiki.org:443',
           'overwriteprotocol' => 'https',
+          'log_type' => 'errorlog',
+          'loglevel' => 0,
+          'logdateformat' => 'c'
         );
 
     trustedDomains:
