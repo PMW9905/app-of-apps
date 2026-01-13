@@ -1,49 +1,17 @@
 nextcloud:
-  persistence:
-    enabled: true
-    storageClass: nextcloud-storageclass
-    accessMode: ReadWriteMany
-    size: 1Ti
-    nextcloudData:
-      enabled: true
-      subPath: data
-
   nextcloud:
-    existingSecret:
-      enabled: true
-      secretName: nextcloud-admin
-      usernameKey: nextcloud-username
-      passwordKey: nextcloud-password
-
-  internalDatabase:
-    enabled: false
-
-  postgresql:
-    enabled: true
-    auth:
-      existingSecret: nextcloud-postgres
-      usernameKey: username
-      passwordKey: password
-      databaseKey: database
-    primary:
-      persistence:
+    objectStore:
+      s3:
         enabled: true
-        storageClass: nextcloud-postgresql-storageclass
+        bucket: "nextcloud"
+        host: "nextcloud.parkiki.org"
+        port: "30292"
+        ssl: true
+        region: "us-east-1"
+        usePathStyle: true
+        legacyAuth: false
 
-  redis:
-    enabled: true
-    auth:
-      enabled: false
-
-  livenessProbe:
-    initialDelaySeconds: 120
-    failureThreshold: 5
-
-  readinessProbe:
-    initialDelaySeconds: 120
-    failureThreshold: 5
-
-  podSecurityContext:
-    fsGroup: 33
-    runAsUser: 33
-    runAsGroup: 33
+        existingSecret: "nextcloud-s3-credentials"
+        secretKeys:
+          accessKey: "access-key"
+          secretKey: "secret-key"
