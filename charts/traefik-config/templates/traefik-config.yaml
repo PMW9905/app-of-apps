@@ -5,6 +5,11 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    providers:
+      kubernetesCRD:
+        allowExternalNameServices: true
+      kubernetesIngress:
+        allowExternalNameServices: true
     additionalArguments:
       - "--api"
       - "--api.dashboard=true"
