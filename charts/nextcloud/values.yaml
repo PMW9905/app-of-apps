@@ -1,14 +1,25 @@
 nextcloud:
   nextcloud:
     host: nextcloud.parkiki.org
+
+    configs:
+      overwrite.config.php: |-
+        <?php
+        $CONFIG = array (
+          'overwritehost' => 'nextcloud.parkiki.org:443',
+          'overwriteprotocol' => 'https',
+        );
+
     trustedDomains:
       - nextcloud.parkiki.org
       - localhost
+
     existingSecret:
       enabled: true
       secretName: nextcloud-admin
       usernameKey: nextcloud-username
       passwordKey: nextcloud-password
+
     objectStore:
       s3:
         enabled: true
