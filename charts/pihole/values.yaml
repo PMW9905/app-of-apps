@@ -1,0 +1,5 @@
+pihole:
+  serviceDns:
+    type: LoadBalancer
+  serviceWeb:
+    type: LoadBalancer
