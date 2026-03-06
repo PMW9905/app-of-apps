@@ -1,1 +1,3 @@
-
+democratic-csi:
+  csiDriver:
+    name: "org.democratic-csi.iscsi"
