@@ -1,0 +1,15 @@
+couchdb:
+  clusterSize: 1
+
+  createAdminSecret: false
+  existingSecret: couchdb-credentials
+
+  persistentVolume:
+    enabled: true
+    selfManaged: true
+    existingClaims:
+      - couchdb-pvc
+
+  couchdbConfig:
+    couchdb:
+      uuid: auto
