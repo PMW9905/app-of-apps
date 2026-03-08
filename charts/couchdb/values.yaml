@@ -6,10 +6,9 @@ couchdb:
 
   persistentVolume:
     enabled: true
-    existingClaims:
-      - couchdb-pvc
+    storageClass: "truenas-iscsi"
+    size: 10Gi
 
   couchdbConfig:
     couchdb:
       uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
-      single_node: true
