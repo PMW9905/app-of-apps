@@ -1,19 +1,13 @@
 couchdb:
   clusterSize: 1
-
   createAdminSecret: false
-  existingSecret: couchdb-credentials
+  extraSecretName: couchdb-credentials
 
   couchdbConfig:
     couchdb:
-      uuid: your-uuid-here
+      uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
 
   persistentVolume:
     enabled: true
     existingClaims:
-      - volumeName: database-storage
-        claimName: couchdb-pvc
-        persistentVolumeName: couchdb-pv
-        volumeSource:
-          persistentVolumeClaim:
-            claimName: couchdb-pvc
+      - couchdb-pvc
