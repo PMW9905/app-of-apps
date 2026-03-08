@@ -4,12 +4,13 @@ couchdb:
   createAdminSecret: false
   existingSecret: couchdb-credentials
 
-  persistentVolume:
-    enabled: true
-    selfManaged: true
-    existingClaims:
-      - couchdb-pvc
-
   couchdbConfig:
     couchdb:
-      uuid: auto
+      uuid: e547b597-ba3f-40e6-a8a8-38e3a26a5251
+
+  persistentVolume:
+    enabled: true
+    existingClaims:
+      - volumeName: database-storage
+        claimName: couchdb-pvc
+        persistentVolumeName: couchdb-pv
