@@ -21,19 +21,3 @@ spec:
     lun: 0
     fsType: ext4
     readOnly: false
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: database-storage-couchdb-0 
-  namespace: couchdb
-  annotations:
-    helm.sh/resource-policy: keep
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: truenas-iscsi
-  resources:
-    requests:
-      storage: 10Gi
-  volumeName: couchdb-pv # Still perfectly maps to your manual PV

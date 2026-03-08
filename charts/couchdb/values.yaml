@@ -6,8 +6,18 @@ couchdb:
 
   persistentVolume:
     enabled: true
-    storageClass: "truenas-iscsi"
     size: 10Gi
+    accessModes:
+      - ReadWriteOnce
+    storageClass: "truenas-iscsi" 
+
+    annotations:
+      helm.sh/resource-policy: keep  
+
+    existingClaims:
+      - volumeName: database-storage        
+        claimName: database-storage-couchdb-couchdb-0  
+        persistentVolumeName: couchdb-pv    
 
   couchdbConfig:
     couchdb:
