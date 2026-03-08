@@ -1,13 +1,15 @@
 couchdb:
   clusterSize: 1
-  createAdminSecret: false
-  extraSecretName: couchdb-credentials
 
-  couchdbConfig:
-    couchdb:
-      uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
+  createAdminSecret: false
+  existingSecret: couchdb-secret
 
   persistentVolume:
     enabled: true
     existingClaims:
       - couchdb-pvc
+
+  couchdbConfig:
+    couchdb:
+      uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
+      single_node: true
