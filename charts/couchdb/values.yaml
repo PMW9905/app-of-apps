@@ -1,7 +1,6 @@
 couchdb:
   clusterSize: 1
   createAdminSecret: false
-  existingSecret: couchdb-secret
   persistentVolume:
     enabled: false    # chart stays out of storage completely
   couchdbConfig:
