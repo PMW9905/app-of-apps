@@ -1,8 +1,0 @@
-couchdb:
-  clusterSize: 1
-  createAdminSecret: false
-  persistentVolume:
-    enabled: false    # chart stays out of storage completely
-  couchdbConfig:
-    couchdb:
-      uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
