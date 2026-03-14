@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   name: couchdb
 ---
+# storage.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -15,9 +16,26 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: truenas-iscsi
+  claimRef:
+    namespace: couchdb
+    name: database-storage-couchdb-couchdb-0
   iscsi:
     targetPortal: 192.168.1.232:3260
     iqn: iqn.2005-10.org.freenas.ctl:couchdb
     lun: 0
     fsType: ext4
     readOnly: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-storage-couchdb-couchdb-0
+  namespace: couchdb
+spec:
+  storageClassName: truenas-iscsi
+  volumeName: couchdb-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

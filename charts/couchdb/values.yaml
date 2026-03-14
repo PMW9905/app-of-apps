@@ -1,24 +1,9 @@
 couchdb:
   clusterSize: 1
-
   createAdminSecret: false
   existingSecret: couchdb-secret
-
   persistentVolume:
-    enabled: true
-    size: 10Gi
-    accessModes:
-      - ReadWriteOnce
-    storageClass: "truenas-iscsi" 
-
-    annotations:
-      helm.sh/resource-policy: keep  
-
-    existingClaims:
-      - volumeName: database-storage        
-        claimName: database-storage-couchdb-couchdb-0  
-        persistentVolumeName: couchdb-pv    
-
+    enabled: false    # chart stays out of storage completely
   couchdbConfig:
     couchdb:
       uuid: c66119ac-4726-4f00-a568-39ce81cd89c1
