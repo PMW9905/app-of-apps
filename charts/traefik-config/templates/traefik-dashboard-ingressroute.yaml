@@ -7,11 +7,14 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - kind: Rule
-      match: Host(`traefik.parkiki.org`)
-      priority: 10
+    - match: Host(`traefik.parkiki.org`)
+      kind: Rule
       services:
         - name: api@internal
           kind: TraefikService
   tls:
     certResolver: letsencrypt
+    domains:
+      - main: "parkiki.org"
+        sans:
+          - "*.parkiki.org"
