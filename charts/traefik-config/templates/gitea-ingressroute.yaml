@@ -14,3 +14,7 @@ spec:
           port: 3000
   tls:
     certResolver: letsencrypt
+    domains:
+      - main: "parkiki.org"
+        sans:
+          - "*.parkiki.org"

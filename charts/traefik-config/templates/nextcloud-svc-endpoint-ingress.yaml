@@ -25,3 +25,7 @@ spec:
           port: 30027
   tls:
     certResolver: letsencrypt
+    domains:
+      - main: "parkiki.org"
+        sans:
+          - "*.parkiki.org"
