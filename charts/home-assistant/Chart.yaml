@@ -1,0 +1,10 @@
+apiVersion: v2
+name: home-assistant-wrapper
+type: application
+version: 0.1.0
+appVersion: "0.3.53"
+
+dependencies:
+  - name: home-assistant
+    version: "0.3.53"
+    repository: http://pajikos.github.io/home-assistant-helm-chart/

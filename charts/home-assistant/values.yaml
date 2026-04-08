@@ -1,0 +1,6 @@
+home-assistant:
+  persistence:
+    enabled: true
+    storageClass: "home-assistant-storageclass"
+    accessMode: ReadWriteOnce
+    size: 5Gi
