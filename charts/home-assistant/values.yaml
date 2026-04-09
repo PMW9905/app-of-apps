@@ -4,3 +4,14 @@ home-assistant:
     storageClass: "home-assistant-storageclass"
     accessMode: ReadWriteOnce
     size: 5Gi
+
+  ingress:
+    enabled: false
+    external: true
+
+  configuration:
+    enabled: true
+    forceInit: true
+    trusted_proxies:
+      - 10.42.0.0/16
+      - 10.43.0.0/16
