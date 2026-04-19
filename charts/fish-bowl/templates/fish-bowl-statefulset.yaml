@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fish-bowl
+  namespace: minecraft
+spec:
+  serviceName: fish-bowl
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fish-bowl
+  template:
+    metadata:
+      labels:
+        app: fish-bowl
+    spec:
+      containers:
+        # ---------- Main Minecraft server ----------
+        - name: minecraft
+          image: itzg/minecraft-server:java21
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: "TRUE"
+
+            # --- Server Configuration ---
+            - name: TYPE
+              value: NEOFORGE
+
+            - name: MOD_PLATFORM
+              value: MODRINTH
+
+            - name: MODRINTH_MODPACK_URL
+              value: "https://github.com/PMW9905/fish-bowl/releases/download/0.0.1/FishBowl-0.0.1.mrpack"
+
+            # --- Additional Config ---
+            - name: MEMORY
+              value: "12G"
+            - name: ONLINE_MODE
+              value: "TRUE"
+            - name: WHITELIST
+              value: "TRUE"
+            - name: MAX_PLAYERS
+              value: "20"
+
+            # --- RCON ---
+            - name: ENABLE_RCON
+              value: "TRUE"
+            - name: RCON_BINDING
+              value: "127.0.0.1"
+            - name: RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rcon-secret
+                  key: rcon-password
+
+          volumeMounts:
+            - name: data
+              mountPath: /data
+
+        # ---------- Playit.gg sidecar ----------
+        - name: playit
+          image: ghcr.io/playit-cloud/playit-agent:latest
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: playitgg-secret
+                  key: playitgg-api-key
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: fish-bowl-data
+
