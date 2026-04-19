@@ -25,12 +25,6 @@ spec:
               value: "TRUE"
 
             # --- Server Configuration ---
-            - name: TYPE
-              value: NEOFORGE
-
-            - name: MOD_PLATFORM
-              value: MODRINTH
-
             - name: MODRINTH_MODPACK_URL
               value: "https://github.com/PMW9905/fish-bowl/releases/download/0.0.1/FishBowl-0.0.1.mrpack"
 
