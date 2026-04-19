@@ -25,7 +25,9 @@ spec:
               value: "TRUE"
 
             # --- Server Configuration ---
-            - name: MODRINTH_MODPACK_URL
+            - name: TYPE
+              value: MODRINTH
+            - name: MODRINTH_MODPACK
               value: "https://github.com/PMW9905/fish-bowl/releases/download/0.0.1/FishBowl-0.0.1.mrpack"
 
             # --- Additional Config ---
@@ -67,4 +69,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: fish-bowl-data
-
