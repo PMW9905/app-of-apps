@@ -28,7 +28,7 @@ spec:
             - name: TYPE
               value: MODRINTH
             - name: MODRINTH_MODPACK
-              value: "https://github.com/PMW9905/fish-bowl-packwiz/releases/download/0.0.4/FishBowl-0.0.4.mrpack"
+              value: "https://github.com/PMW9905/fish-bowl-packwiz/releases/download/0.0.5/FishBowl-0.0.5.mrpack"
             - name: MODRINTH_FORCE_SYNCHRONIZE
               value: "true"
 
