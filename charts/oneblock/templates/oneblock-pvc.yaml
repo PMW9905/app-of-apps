@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: oneblock-data
+  namespace: minecraft-oneblock
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: oneblock-storageclass
+  resources:
+    requests:
+      storage: 20Gi

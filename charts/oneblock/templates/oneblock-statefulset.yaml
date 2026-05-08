@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: oneblock
+  namespace: minecraft
+spec:
+  serviceName: oneblock
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oneblock
+  template:
+    metadata:
+      labels:
+        app: oneblock
+    spec:
+      containers:
+        # ---------- Main Minecraft server ----------
+        - name: minecraft
+          image: itzg/minecraft-server:java21
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: "TRUE"
+
+            # --- Server Configuration ---
+            - name: TYPE
+              value: VANILLA
+            - name: VERSION
+              value: "26.1"
+
+            # --- Additional Config ---
+            - name: MEMORY
+              value: "12G"
+            - name: ONLINE_MODE
+              value: "TRUE"
+            - name: WHITELIST
+              value: "TRUE"
+            - name: MAX_PLAYERS
+              value: "20"
+
+            # --- RCON ---
+            - name: ENABLE_RCON
+              value: "TRUE"
+            - name: RCON_BINDING
+              value: "127.0.0.1"
+            - name: RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rcon-secret
+                  key: rcon-password
+
+          volumeMounts:
+            - name: data
+              mountPath: /data
+
+        # ---------- Playit.gg sidecar ----------
+        - name: playit
+          image: ghcr.io/playit-cloud/playit-agent:latest
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: playitgg-secret
+                  key: playitgg-api-key
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: oneblock-data
