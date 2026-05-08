@@ -17,7 +17,7 @@ spec:
       containers:
         # ---------- Main Minecraft server ----------
         - name: minecraft
-          image: itzg/minecraft-server:java21
+          image: itzg/minecraft-server:java25
           ports:
             - containerPort: 25565
           env:
