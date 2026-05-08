@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: oneblock
-  namespace: minecraft
+  namespace: minecraft-oneblock
 spec:
   serviceName: oneblock
   replicas: 1
@@ -32,7 +32,7 @@ spec:
 
             # --- Additional Config ---
             - name: MEMORY
-              value: "12G"
+              value: "6G"
             - name: ONLINE_MODE
               value: "TRUE"
             - name: WHITELIST
