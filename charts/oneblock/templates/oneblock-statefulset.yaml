@@ -18,6 +18,9 @@ spec:
         # ---------- Main Minecraft server ----------
         - name: minecraft
           image: itzg/minecraft-server:java25
+          resources:
+            requests:
+              memory: "6Gi"
           ports:
             - containerPort: 25565
           env:
