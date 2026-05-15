@@ -60,7 +60,8 @@ spec:
 
         # ---------- Playit.gg sidecar ----------
         - name: playit
-          image: ghcr.io/playit-cloud/playit-agent:latest
+          image: ghcr.io/playit-cloud/playit-agent:1.0.2
+          imagePullPolicy: Always
           env:
             - name: SECRET_KEY
               valueFrom:
