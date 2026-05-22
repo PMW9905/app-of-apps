@@ -1,0 +1,10 @@
+audiobookshelf:
+  nfs:
+  - server: truenas.example.com
+    storage: 100Gi
+    name: media
+    share:
+      - name: audiobooks
+        path: /mnt/fast_storage/k3s/audiobookshelf/audiobooks
+        mountPath: /audiobooks
+        readOnly: true

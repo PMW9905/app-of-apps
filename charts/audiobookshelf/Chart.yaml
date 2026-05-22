@@ -1,0 +1,9 @@
+apiVersion: v2
+name: audiobookshelf-wrapper
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: audiobookshelf
+    version: "0.0.2-nightly.54"
+    repository: https://gitlab.com/api/v4/projects/57546317/packages/helm/nightly

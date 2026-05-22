@@ -1,0 +1,6 @@
+dependencies:
+- name: audiobookshelf
+  repository: https://gitlab.com/api/v4/projects/57546317/packages/helm/nightly
+  version: 0.0.2-nightly.54
+digest: sha256:31bb5a66e841a9c9657598259ca873dff74ed4f8d1b39e2d1715441e579f90f0
+generated: "2026-05-21T20:04:25.632483643-05:00"
