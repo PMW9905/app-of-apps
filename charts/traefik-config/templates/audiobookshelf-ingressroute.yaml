@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: audiobookshelf
+  namespace: audiobookshelf
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`audiobookshelf.parkiki.org`)
+      priority: 10
+      services:
+        - name: audiobookshelf
+          port: 80
+  tls:
+    certResolver: letsencrypt
+    domains:
+      - main: "parkiki.org"
+        sans:
+          - "*.parkiki.org"
