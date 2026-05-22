@@ -1,6 +1,6 @@
 audiobookshelf:
   nfs:
-  - server: truenas.example.com
+  - server: truenas.parkiki.org
     storage: 100Gi
     name: media
     share:
